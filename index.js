@@ -1,4 +1,6 @@
 require('dotenv').config()
+
+// TODO: add category by folder's name (ex. manage/reload => Manager/reload command)
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -42,15 +44,18 @@ client.on(Events.InteractionCreate, async interaction => {
     await command.execute(interaction);
   } catch (error) {
     console.error(error);
-    const channel = client.channels.cache.get('1228692306987585577');
-    channel.send(`${interaction.user.username}, issued the command: ${interaction.command.name}\nError: \`\`\`${error}\`\`\``);
     if (interaction.replied || interaction.deferred) {
+      // const channel = interaction.client.channels.cache.get('1228692306987585577');
       await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+      // channel.send(`${interaction.user.username}, issued the command: ${interaction.command.name}\nError: \`\`\`${error}\`\`\``);
     } else {
       await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
   }
 });
+// TODO: unfinished
+let arr = ['events', 'slash'];
+arr.forEach(handler => require("./handler/")(client));
 
 client.on("messageCreate", (message) => {
   if (message.mentions.users.has(client.user.id)) {

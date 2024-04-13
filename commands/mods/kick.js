@@ -28,8 +28,8 @@ module.exports = {
         try { // TODO: Fix DMs can't send to target (if they disabled DMs)
           return member.send(`You're been kicked from **crischutu07's Server**
 Reason: ${reason}`)
-        } catch { return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason}`, ephemeral: true }) } finally {
-          interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)`, ephemeral: true });
+        } catch { return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason}` }) } finally {
+          interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)` });
         }
       } catch (error) {
         console.error(error);

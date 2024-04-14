@@ -24,16 +24,11 @@ module.exports = {
         return interactions.reply({ content: 'I cannot kick that user.', ephemeral: true });
       }
       try {
-        await member.kick(reason);
-        try { // TODO: Fix DMs can't send to target (if they disabled DMs)
-          return member.send(`You're been kicked from **crischutu07's Server**
-Reason: ${reason}`)
-        } catch { return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason}` }) } finally {
-          interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)` });
-        }
-      } catch (error) {
-        console.error(error);
-        return interactions.reply({ content: 'An error occurred while trying to kick the user.', ephemeral: true });
+          await member.send(`You're been kicked from **crischutu07's Server** Reason: ${reason}`)
+          await member.kick(reason);
+          return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)` });
+      } catch(error) {
+        return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason}` })
       }
     }
 }

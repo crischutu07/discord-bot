@@ -4,6 +4,8 @@ require('dotenv').config()
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
+const eventHandler = require('./');
+const {copyFileSync} = require("node:fs");
 const token = process.env.TOKEN;
 
 const client = new Client({ intents: [
@@ -45,27 +47,35 @@ client.on(Events.InteractionCreate, async interaction => {
   } catch (error) {
     console.error(error);
     if (interaction.replied || interaction.deferred) {
-      // const channel = interaction.client.channels.cache.get('1228692306987585577');
+      const channel = interaction.client.channels.cache.get('1228692306987585577');
       await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-      // channel.send(`${interaction.user.username}, issued the command: ${interaction.command.name}\nError: \`\`\`${error}\`\`\``);
+      channel.send(`${interaction.user.username}, issued the command: ${interaction.command.name}\nError: \`\`\`${error}\`\`\``);
     } else {
       await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
   }
 });
-// TODO: unfinished
-let arr = ['events', 'slash'];
-arr.forEach(handler => require("./handler/")(client));
+// Execute all available events on ./events folder (can't be on a folder sadge)
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args));
+  }
+}
+// umm sillies
 client.on("messageCreate", (message) => {
-  if (message.mentions.users.has(client.user.id)) {
-    message.reply("Hey!.")
+  if (message.content.startsWith("nigga")) {
+    message.reply("why are you racist?")
+    message.reply("<@1001747794954039368> gonna punish u :3");
   } 
 });
 
 
-client.once(Events.ClientReady, readyClient => {
-  console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-});
 
 client.login(token);

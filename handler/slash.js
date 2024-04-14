@@ -10,8 +10,6 @@ module.exports = (client) => { // unfinished
       client.interactions.set(pull.name, pull);
       slashCommands.push(pull);
       count++;
-    } else {
-      continue;
     }
   }
   

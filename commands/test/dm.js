@@ -14,7 +14,7 @@ module.exports = {
     const member = interaction.guild.members.cache.get(user.id)
     try { // TODO: fix catching wrong error
       await user.send(msg)
-      await interaction.reply(`${user}! The interactor just told me to send something :3`)
+      return interaction.reply(`${user}! The interactor just told me to send something :3`)
       // return interaction.followUp(`Sent the message to **${member.user.username}**!\n\nContents: "${msg}"`)
     } catch {
       return interaction.reply(`${member.user.username} user is not enabled Direct Messages.`)

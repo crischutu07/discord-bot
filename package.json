@@ -1,17 +1,19 @@
 {
-  "name": "nodejs",
+  "name": "discord-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "My very own discord bot....",
   "main": "index.js",
   "scripts": {
-    "start": "node deploy-commands.js && node index.js",
-    "stop": "node index.js"
+    "reload": "node deploy-commands.js",
+    "main": "node index.js",
+    "start": "node deploy-commands.js && node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "crischutu08",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
+    "custom-logger": "^0.3.1",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5"
   }

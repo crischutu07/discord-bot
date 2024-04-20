@@ -1,6 +1,9 @@
 {
   "guildId": "1188597633195966605",
   "clientId": "1228308322914930739",
-
-  "owner": ["1001747794954039368"]
+  "bannerPath": "./contents/banner.gif",
+  "avatarPath": "./contents/sillies.jpg",
+  "owner": [
+    "1001747794954039368"
+  ]
 }

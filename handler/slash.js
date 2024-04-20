@@ -15,7 +15,7 @@ module.exports = (client) => { // unfinished
   
   client.on('ready', async () => {
     await client.application.commands.set(slashCommands);
-  })
+    })
   })
   
   

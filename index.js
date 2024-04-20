@@ -1,26 +1,21 @@
-require('dotenv').config()
+const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const Logger = require('./utils/logging');
+const log = new Logger();
+const init = require('./init')
 
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const log = require('custom-logger').config({ format: '[%timestamp%] [%event%]%message%'  });
-log.new({
-  info: { color: 'cyan', level: 0, event: 'INFO' },
-  notice: { color: 'orange', level: 1, event: 'NOTICE' },
-  warn: { color: 'yellow', level: 2, event: 'WARN' },
-  error: { color: 'red', level: 3, event: 'ERROR' }
+let allowedMentions = ["users"]
+const client = new Client({
+  allowedMentions: {
+    parse: allowedMentions
+  },
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.MessageContent,
+  ]
 });
-// Main Handler
-const eventHandler = require('./handler/eventHandler');
-const commandHandler = require('./handler/commandsHandler');
-
-const token = process.env.TOKEN;
-
-const client = new Client({ intents: [
-  GatewayIntentBits.Guilds,
-  GatewayIntentBits.GuildMessages
-] });
 
 client.commands = new Collection();
-eventHandler(client)
-commandHandler(client, log)
 
-client.login(token)
+init(client, log)

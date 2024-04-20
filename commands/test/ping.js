@@ -6,9 +6,7 @@ module.exports = {
     .setDescription("Replies with Pong!"),
   async execute(interaction) {
     const ping = interaction.client.ws.ping;
-    await interaction.reply({
-      content: `Pong! ${ping}ms.`,
-      ephemeral: true
-    });
+    await interaction.reply(`Pong! ${ping}ms.\n` +
+    `*Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>*`)
   },
 };

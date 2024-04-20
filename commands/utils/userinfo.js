@@ -1,4 +1,6 @@
-const { SlashCommandBuilder, Embed, EmbedBuilder} = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+var infoIcon = 'https://i.imgur.com/tjevwUV.png';
+var userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("userinfo")  
@@ -9,22 +11,19 @@ module.exports = {
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;
     const member = interaction.guild.members.cache.get(user.id);
-
     const userinfoEmbed = new EmbedBuilder()
-      .setColor('#0099ff')
-      .setURL(`${user}`)
-      .setTitle(`${user.username}`)
-      .setAuthor({ name: `${user.username}`, iconURL: `${member.user.avatarURL}` })
-      .setDescription(`Display: ${user.displayName}`)
-      .setThumbnail(`${member.user.avatarURL}`)
+      .setColor('#0098ff')
+      .setTitle(`${member.user.displayName}`)
+      .setURL(`https://discordlookup.com/user/${user.id}`)
+      .setAuthor({ name: `User infomations: ${user.username}`, iconURL: `${infoIcon}` })
+      .setDescription(`Display: ${member.user.displayName}`)
+      .setThumbnail(`${member.displayAvatarURL()}`)
       .addFields(
-        { name: 'Created At', value: `${(member.createdTimestamp / 1000).toFixed()}` },
-        { name: '\u200B', value: '\u200B' },
-        { name: 'Joined At', value: `${(user.createdTimestamp / 1000).toFixed()}`, inline: true },
+        { name: 'Created At', value: `<t:${(user.createdTimestamp / 1000).toFixed()}:R>`, inline: true },
+        { name: 'Joined At', value: `<t:${(member.joinedTimestamp / 1000).toFixed()}:R>`, inline: true },
       )
-      .addFields({name: 'Inline field title', value: 'Some value here too.', inline: true})
       .setTimestamp()
-      .setFooter({ text: `ID: ${user.id}`, iconURL: `${interaction.user.avatarURL}` });
+     .setFooter({ text: `ID: ${user.id}`, iconURL: userRound }); // add iconURL
     interaction.reply({ embeds: [userinfoEmbed] });
     // if (user){ // target info
     //   await interaction.reply({

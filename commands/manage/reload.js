@@ -12,7 +12,7 @@ module.exports = {
   async execute(interaction) {
     const commandName = interaction.options.getString('command', true).toLowerCase();
     const command = interaction.client.commands.get(commandName);
-    
+    console.log(command)
     if (!command) { // TODO: Add reload global (here)
       return interaction.reply(`There is no command with name \`${commandName}\`!`);
     }

@@ -19,7 +19,7 @@ module.exports = {
         { name: 'Inline field title 0', value: 'Some value here 0', inline: true },
         { name: 'Inline field title 1', value: 'Some value here 1', inline: true },
       )
-      .addFields({name: 'Regular Field title 2', value: 'Some value here 2', inline: false})
+      .addFields({ name: 'Regular Field title 2', value: 'Some value here 2', inline: false })
       .setImage('https://i.imgur.com/AfFp7pu.png')
       .setTimestamp()
       .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' });

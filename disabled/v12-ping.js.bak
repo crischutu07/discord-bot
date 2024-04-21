@@ -1,5 +1,4 @@
 module.exports = {
-  slash: false,
   name: "v12-ping",
   description: "Replies with Pong!",
   aliases: ["pong"],

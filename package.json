@@ -7,7 +7,8 @@
     "reload": "node .deploy.js",
     "main": "node index.js",
     "start": "npm run reload && npm run main",
-    "pfpimage-setup": "node .setupimg-banner_pfp.js"
+    "pfpimage-setup": "node .setupimg-banner_pfp.js",
+    "test": "node .test.js"
   },
   "keywords": [],
   "private": true,

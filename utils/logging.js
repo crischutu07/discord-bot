@@ -1,48 +1,78 @@
 const chalk = require('chalk')
 class Logging {
 	label;
-	#formattedTime;
-	constructor(label) {
-		if (!label) this.label = "Main"
-		else this.label = label;
+	constructor() {
+		this.label = "Main"
 	}
-	setLabel(label){
-		if (!label) this.label = "Main"
-		else this.label = label;
+	setLabel(label) {
+		this.label = label ?? "Main"
 	}
-	#timer(){
-	const date = new Date()
-	const hrs = date.getHours().toString().padStart(2, "0");
-	const min = date.getMinutes().toString().padStart(2, "0");
-	const sec = date.getSeconds().toString().padStart(2, "0");
-	const ms = date.getMilliseconds().toString().padStart(3, "0");
+	/**
+	 * @param {level} number
+	 */
+	#getFormat(level, msg) {
+		msg = msg ?? ""
+		const date = new Date()
+		const hrs = date.getHours().toString().padStart(2, "0");
+		const min = date.getMinutes().toString().padStart(2, "0");
+		const sec = date.getSeconds().toString().padStart(2, "0");
+		const ms = date.getMilliseconds().toString().padStart(3, "0");
+		switch (Number(level)) {
+			default:
+				return NaN;
+			case 0:
+				level = chalk.blueBright("INFO")
+				break;
+			case 1:
+				level = chalk.yellow("NOTICE")
+				break;
+			case 2:
+				level = chalk.yellowBright("WARN")
+				break;
+			case 3:
+				level = chalk.red("ERROR")
+				break;
+			case 4:
+				level = chalk.cyanBright("DEBUG")
+				break;
+		}
 
-	this.#formattedTime = `${(hrs)}:${min}:${sec}.${ms}`;
+		return `[${hrs}:${min}:${sec}.${ms} ${level}] [${this.label}]: ${msg}`
 	}
-	info(msg){
-		if (!msg) msg = ""
-		this.#timer()
-		console.log(`[${this.#formattedTime}] [${this.label}/${chalk.cyan("INFO")}]: ${msg}`)
+	/*
+	 * @param {string} msg
+	 */
+	info(msg) {
+		const _ = this.#getFormat(0, msg)
+		console.log(_)
 	}
-	notice(msg){
-		if (!msg) msg = ""
-		this.#timer()
-		console.log(`[${this.#formattedTime}] [${this.label}/${chalk.yellow("NOTICE")}]: ${msg}`)
+	/*
+	 * @param {string} msg
+	 */
+	notice(msg) {
+		const _ = this.#getFormat(1, msg)
+		console.log(_)
 	}
-	warn(msg){
-		if (!msg) msg = ""
-		this.#timer()
-		console.warn(`[${this.#formattedTime}] [${this.label}/${chalk.yellowBright("WARN")}]: ${msg}`)
+	/*
+	 * @param {string} msg
+	 */
+	warn(msg) {
+		const _ = this.#getFormat(2, msg)
+		console.log(_)
 	}
-	error(msg){
-		if (!msg) msg = ""
-		this.#timer()
-		console.error(`[${this.#formattedTime}] [${this.label}/${chalk.red("ERROR")}]: ${msg}`)
+	/*
+	 * @param {string} msg
+	 */
+	error(msg) {
+		const _ = this.#getFormat(3, msg)
+		console.log(_)
 	}
-	debug(msg){
-		if (!msg) msg = ""
-		this.#timer()
-		console.debug(`[${this.#formattedTime}] [${this.label}/${chalk.blue("DEBUG")}]: ${msg}`)
+	/*
+	 * @param {string} msg
+	 */
+	debug(msg) {
+		const _ = this.#getFormat(4, msg)
+		console.log(_)
 	}
 }
 

@@ -18,4 +18,4 @@ const client = new Client({
 
 client.commands = new Collection();
 
-init(client, log)
+init(client, log) // 9 + 10 = 21

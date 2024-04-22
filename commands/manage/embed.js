@@ -1,6 +1,7 @@
 const { PermissionsBitField, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
+  disabled: false,
   data: new SlashCommandBuilder()
     .setName('embed')
     .setDefaultMemberPermissions(PermissionsBitField.ManageServer)

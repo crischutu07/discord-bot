@@ -2,6 +2,7 @@ const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 const os = require("os");
 
 module.exports = {
+  disabled: false,
   data: new SlashCommandBuilder()
     .setName('procinfo')
     .setDescription("Current bot's process infomations")

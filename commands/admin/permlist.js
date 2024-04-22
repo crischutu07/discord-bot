@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js')
 
 module.exports = {
+  disabled: false,
   data: new SlashCommandBuilder()
     .setName("permlist")
     .setDescription("Check user's usable permissions")

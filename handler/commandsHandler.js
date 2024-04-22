@@ -11,13 +11,15 @@ module.exports = (client, log) => {
     for (const file of commandFiles) {
       const filePath = path.join(commandsPath, file);
       const command = require(filePath);
-      log.debug(`Found files: ${command.data.name} => ${filePath}`)
-      // Check if modules actually a fully functional
-      if ('data' || "execute" in command) {
+      if (command.disabled) {
+        log.notice(`${command.data.name} is disabled, skipping..`)
+        return;
+      };
+      if ('data' && "execute" in command) {
         log.debug(`Setting up commands: ${command.data.name}`);
         client.commands.set(command.data.name, command);
       } else {
-        log.warn(`The command at ${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
+        log.warn(`${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
       }
 
     }

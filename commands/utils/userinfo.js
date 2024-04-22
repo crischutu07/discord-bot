@@ -2,8 +2,9 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 var infoIcon = 'https://i.imgur.com/tjevwUV.png';
 var userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
+  disabled: false,
   data: new SlashCommandBuilder()
-    .setName("userinfo")  
+    .setName("userinfo")
     .setDescription("Checks about the user infomations.")
     .addUserOption(option =>
       option.setName('user')
@@ -23,7 +24,7 @@ module.exports = {
         { name: 'Joined At', value: `<t:${(member.joinedTimestamp / 1000).toFixed()}:R>`, inline: true },
       )
       .setTimestamp()
-     .setFooter({ text: `ID: ${user.id}`, iconURL: userRound }); // add iconURL
+      .setFooter({ text: `ID: ${user.id}`, iconURL: userRound }); // add iconURL
     interaction.reply({ embeds: [userinfoEmbed] });
     // if (user){ // target info
     //   await interaction.reply({

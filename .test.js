@@ -13,7 +13,12 @@ for (const folder of commandFolders) {
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
-    if ('data' in command && 'execute' in command) {
+    if (command.disabled == true) {
+      log.notice(`Found ${command.data.name} (DISABLED)`)
+      log.info(`=> ${command.data.description}`)
+      return;
+    }
+    if ('data' && 'execute' in command) {
       log.info(`Found ${command.data.name}:`)
       log.info(`=> ${command.data.description}`)
     } else {

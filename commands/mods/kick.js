@@ -1,4 +1,4 @@
-const { CommandInteraction, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 module.exports = {
   disabled: false,
   data: {
@@ -21,7 +21,7 @@ module.exports = {
   },
   /**
    *
-   * @param {CommandInteraction} interactions
+   * @param {SlashCommandBuilder} interactions
    *
    */
   async execute(interactions) {

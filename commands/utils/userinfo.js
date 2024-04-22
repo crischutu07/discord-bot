@@ -1,4 +1,4 @@
-const { CommandInteraction, EmbedBuilder } = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 var infoIcon = 'https://i.imgur.com/tjevwUV.png';
 var userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {CommandInteraction} interaction
+   * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;

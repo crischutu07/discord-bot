@@ -1,4 +1,4 @@
-const { CommandInteraction, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 const process = require('node:child_process');
 const child_process = require("node:child_process");
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
   },
   /**
    *
-   * @param {CommandInteraction} interaction
+   * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
     const stop = interaction.options.getBoolean("stop")

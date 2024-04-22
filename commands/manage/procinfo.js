@@ -1,17 +1,16 @@
-const { CommandInteraction } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const { PermissionFlagsBits } = require('discord-api-types/v10');
 const os = require("os");
-var defaultPerms = BigInt(PermissionFlagsBits.Administrator);
 module.exports = {
   disabled: false,
   data: {
     name: "procinfo",
     description: "Current bot's process information",
-    default_member_permissions: defaultPerms,
+    default_member_permissions: PermissionFlagsBits.Administrator,
   },
   /**
    *
-   * @param {CommandInteraction} interaction
+   * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
       function uptime(){

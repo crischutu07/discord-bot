@@ -18,11 +18,10 @@ module.exports = {
     try {
       await command.execute(interaction, log);
     } catch (error) {
-      console.error(error);
+      log.error(error);
+      console.error(error.stack);
       if (interaction.replied || interaction.deferred) {
-        const channel = interaction.client.channels.cache.get('1228692306987585577');
-        await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-        channel.send(`${interaction.user.username}, issued the command: ${interaction.command.name}\nError: \`\`\`${error}\`\`\``);
+        interaction.reply({ content: "There's something wrong while executing this command.", ephemeral: true });
       } else {
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
       }

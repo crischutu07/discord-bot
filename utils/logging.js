@@ -8,7 +8,8 @@ class Logging {
 		this.label = label ?? "Main"
 	}
 	/**
-	 * @param {level} number
+	 * @param level
+	 * @param msg
 	 */
 	#getFormat(level, msg) {
 		msg = msg ?? ""
@@ -51,28 +52,28 @@ class Logging {
 	 */
 	notice(msg) {
 		const _ = this.#getFormat(1, msg)
-		console.log(_)
+		console.info(_)
 	}
 	/*
 	 * @param {string} msg
 	 */
 	warn(msg) {
 		const _ = this.#getFormat(2, msg)
-		console.log(_)
+		console.warn(_)
 	}
 	/*
 	 * @param {string} msg
 	 */
 	error(msg) {
 		const _ = this.#getFormat(3, msg)
-		console.log(_)
+		console.error(_)
 	}
 	/*
 	 * @param {string} msg
 	 */
 	debug(msg) {
 		const _ = this.#getFormat(4, msg)
-		console.log(_)
+		console.debug(_)
 	}
 }
 

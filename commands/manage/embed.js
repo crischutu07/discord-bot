@@ -1,4 +1,4 @@
-const { CommandInteraction, PermissionsBitField, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionsBitField, EmbedBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
@@ -9,7 +9,7 @@ module.exports = {
   },
   /**
    *
-   * @param {CommandInteraction} interaction
+   * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
     const exampleEmbed = new EmbedBuilder()

@@ -1,4 +1,4 @@
-const { CommandInteraction } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
@@ -20,7 +20,7 @@ module.exports = {
   },
   /**
    *
-   * @param {CommandInteraction} interaction
+   * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
     const msg = interaction.options.getString('message') || "Hello, World!";

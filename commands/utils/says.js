@@ -1,10 +1,9 @@
-const { CommandInteraction } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
   data: {
     name: "say",
-    aliases: ["says", "said"],
     description: "Says a thing to he bot",
     options: [
       {
@@ -17,10 +16,10 @@ module.exports = {
   },
   /**
    *
-   * @param {CommandInteraction} interactions
+   * @param {SlashCommandBuilder} interaction
    */
-  async execute(interactions) {
-    const str = interactions.options.getString('strings');
-    interactions.reply(`${str}`)
+  async execute(interaction) {
+    const str = interaction.options.getString('strings');
+    interaction.reply(str)
   }
 }

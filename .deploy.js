@@ -10,39 +10,45 @@ const rest = new REST().setToken(token);
 const log = new Logging()
 log.label = "DeployCommands";
 
+BigInt.prototype.toJSON = function() { return this.toString() }
 const commands = [];
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
-const disabledCommands = [];
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
-    if (command.disabled == true) {
-      disabledCommands.push(command.data.toJSON())
+    if (command.disabled === true) {
       log.notice(`${command.data.name} is now disabled.`)
       return;
     }
     if ('data' && 'execute' in command) {
-      commands.push(command.data.toJSON());
-      log.debug(`Passed commands: ${command.data.name}`)
-
+      commands.push(command.data)
+      log.debug(`${commands.length} => ${command.data.name}`)
     } else {
       log.warn(`${filePath} is missing neither "data" or "execute" property.`);
     }
   }
 }
-(async () => {
+console.log(commands)
+async function _loader(client, guild){
   try {
     log.info(`Registering ${commands.length} commands.`);
     const data = await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
-      { body: commands },
+      Routes.applicationGuildCommands(client, guild),
+      {body: commands },
     );
-    log.info(`Loaded ${data.length} commands.`);
+    return log.info(`Loaded ${data.body} commands.`);
   } catch (error) {
-    log.error(error)
+    log.error(`${error}`)
+    console.error(error)
   }
+}
+_loader(clientId, guildId)
+
+
+process.on('uncaughtExpection', (err) => {
+  log.error(err)
 })

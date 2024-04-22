@@ -1,15 +1,26 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { CommandInteraction } = require('discord.js');
 
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('say')
-    .setDescription('Says a thing to he bot')
-    .addStringOption(option =>
-      option.setName('strings')
-        .setDescription("Type a string of text to say something").setRequired(true)),
+  data: {
+    name: "say",
+    aliases: ["says", "said"],
+    description: "Says a thing to he bot",
+    options: [
+      {
+        name: "message",
+        description: "Type a string of text to say something",
+        type: 3,
+        required: true
+      }
+    ],
+  },
+  /**
+   *
+   * @param {CommandInteraction} interactions
+   */
   async execute(interactions) {
     const str = interactions.options.getString('strings');
-    interactions.reply(str)
+    interactions.reply(`${str}`)
   }
 }

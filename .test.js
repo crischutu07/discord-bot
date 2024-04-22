@@ -13,7 +13,7 @@ for (const folder of commandFolders) {
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
-    if (command.disabled == true) {
+    if (command.disabled === true) {
       log.notice(`Found ${command.data.name} (DISABLED)`)
       log.info(`=> ${command.data.description}`)
       return;
@@ -22,7 +22,7 @@ for (const folder of commandFolders) {
       log.info(`Found ${command.data.name}:`)
       log.info(`=> ${command.data.description}`)
     } else {
-      log.warn(`The command at ${filePath} is missing a required "data" or "execute" property.`);
+      log.warn(`${filePath} is missing a required "data" or "execute" property.`);
     }
   }
 }

@@ -1,15 +1,23 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { CommandInteraction, PermissionsBitField } = require('discord.js');
 const process = require('node:child_process');
 const child_process = require("node:child_process");
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("restart")
-    .setDescription("Restart the bot")
-    .addBooleanOption(option =>
-      option.setName("stop")
-        .setDescription("Stops the bot")
-        .setRequired(true))
-    .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
+  data: {
+    name: "restart",
+    description: "Restart the bot",
+    default_member_permissions: PermissionsBitField.Flags.Administrator,
+    options: [
+      {
+        name: "stop",
+        description: "Stop the bot",
+        type: 5,
+      }
+    ]
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const stop = interaction.options.getBoolean("stop")
     if (stop === true){

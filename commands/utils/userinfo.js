@@ -1,14 +1,22 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+const { CommandInteraction, EmbedBuilder } = require('discord.js')
 var infoIcon = 'https://i.imgur.com/tjevwUV.png';
 var userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName("userinfo")
-    .setDescription("Checks about the user infomations.")
-    .addUserOption(option =>
-      option.setName('user')
-        .setDescription('The user you want to check')),
+  data: {
+    name: "userinfo",
+    description: "Check about the user information.",
+    options: [
+      {
+        name: "user",
+        description: "The user you want to check",
+        type: 6
+      }
+    ]
+  },
+  /**
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;
     const member = interaction.guild.members.cache.get(user.id);

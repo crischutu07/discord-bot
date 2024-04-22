@@ -1,15 +1,27 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { CommandInteraction } = require('discord.js');
 
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('dm')
-    .setDescription('send a Direct Message to the specified user.')
-    .addUserOption(option => option.setName('user')
-      .setRequired(true)
-      .setDescription('User to send a Direct Messages'))
-    .addStringOption(option => option.setName('message')
-      .setDescription('Message to send DMs (default: Hello, World!)')),
+  data: {
+    name: "dm",
+    description: "send a Direct Message to the specified user.",
+    options: [
+      {
+        name: "user",
+        description: "User to send a Direct Messages",
+        type: 6
+      },
+      {
+        name: "message",
+        description: "Message to send DMs (default: Hello, World!)",
+        type: 3
+      }
+    ]
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const msg = interaction.options.getString('message') || "Hello, World!";
     const user = interaction.options.getUser('user');

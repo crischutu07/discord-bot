@@ -1,19 +1,29 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
-
+const { CommandInteraction, PermissionsBitField } = require('discord.js');
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('kick')
-    .setDescription('Kicks a user from the server.')
-    .setDefaultMemberPermissions(PermissionsBitField.Flags.KickMembers)
-    .addUserOption(option =>
-      option.setName('user')
-        .setDescription('The user you want to kick.')
-        .setRequired(true))
-    .addStringOption(option =>
-      option.setName('reason')
-        .setDescription('The reason for the kick.')
-        .setRequired(false)),
+  data: {
+    name: "kick",
+    description: "Kick a user from the server.",
+    default_member_permissions: PermissionsBitField.Flags.KickMembers,
+    options: [
+      {
+        name: "user",
+        description: "User you want to kick",
+        required: true,
+        type: 6,
+      },
+      {
+        name: "reason",
+        description: "The user you want to kick,",
+        type: 3,
+      }
+    ]
+  },
+  /**
+   *
+   * @param {CommandInteraction} interactions
+   *
+   */
   async execute(interactions) {
     const user = interactions.options.getUser('user');
     const reason = interactions.options.getString('reason') || 'No reason provided.';

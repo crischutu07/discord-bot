@@ -1,13 +1,19 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { CommandInteraction } = require('discord.js');
+const { PermissionFlagsBits } = require('discord-api-types/v10');
 const os = require("os");
-
+var defaultPerms = BigInt(PermissionFlagsBits.Administrator);
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('procinfo')
-    .setDescription("Current bot's process infomations")
-    .setDefaultMemberPermissions(PermissionsBitField.ManageServer),
-    async execute(interaction) {
+  data: {
+    name: "procinfo",
+    description: "Current bot's process information",
+    default_member_permissions: defaultPerms,
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
+  async execute(interaction) {
       function uptime(){
         const uptime = process.uptime()
         const date = new Date(uptime*1000);
@@ -29,5 +35,5 @@ module.exports = {
         `Uptime: ${uptime()}\n` +
         `Node.js Version: ${process.version}\n`
       )
-    }
+  }
 }

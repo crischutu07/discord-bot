@@ -1,11 +1,16 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { CommandInteraction } = require("discord.js");
 
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName("ping")
-    .setDescription("Replies with Pong!")
-    .setDMPermission(true),
+  data: {
+    name: "ping",
+    description: "Replies with Pong!",
+    required: true,
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const ping = interaction.client.ws.ping;
     await interaction.reply(`Pong! ${ping}ms.\n` +

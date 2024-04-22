@@ -1,11 +1,16 @@
-const { PermissionsBitField, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { CommandInteraction, PermissionsBitField, EmbedBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('embed')
-    .setDefaultMemberPermissions(PermissionsBitField.ManageServer)
-    .setDescription('Test embed'),
+  data: {
+    name: "embed",
+    description: "Test embed",
+    default_member_permissions: PermissionsBitField.Flags.ManageGuild,
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const exampleEmbed = new EmbedBuilder()
       .setColor('#0099ff')

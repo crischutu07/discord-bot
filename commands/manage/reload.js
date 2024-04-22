@@ -1,15 +1,24 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { CommandInteraction, PermissionsBitField } = require('discord.js');
 // TODO: Add reload global
 module.exports = {
   disabled: false,
-  data: new SlashCommandBuilder()
-    .setName('reload')
-    .setDescription('Reloads a command.')
-    .addStringOption(option =>
-      option.setName('command')
-        .setDescription('The command to reload.')
-        .setRequired(true))
-    .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
+  data: {
+    name: "reload",
+    default_member_permissions: PermissionsBitField.Flags.Administrator,
+    description: "Reload a command.",
+    option: [
+      {
+        name: "command",
+        required: true,
+        description: "The command to reload",
+        type: 6
+      }
+    ]
+  },
+  /**
+   *
+   * @param {CommandInteraction} interaction
+   */
   async execute(interaction) {
     const commandName = interaction.options.getString('command', true).toLowerCase();
     const command = interaction.client.commands.get(commandName);

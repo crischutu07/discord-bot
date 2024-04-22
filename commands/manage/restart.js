@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
-const process = require('node:child_process');
+// const process = require('node:child_process');
 const child_process = require("node:child_process");
 module.exports = {
   data: {

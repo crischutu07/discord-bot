@@ -2,7 +2,8 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const Logger = require('./utils/logging');
 const log = new Logger();
 const init = require('./init')
-
+const verbose = process.argv[2] === '-v';
+log.info("Verbose logging is enabled.");
 let allowedMentions = ["users"]
 const client = new Client({
   allowedMentions: {

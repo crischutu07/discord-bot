@@ -8,7 +8,8 @@
     "main": "node index.js",
     "start": "npm run reload && npm run main",
     "pfpimage-setup": "node .setupimg-banner_pfp.js",
-    "test": "node .test.js"
+    "test": "node .test.js",
+    "verbose": "node index.js -v"
   },
   "keywords": [],
   "private": true,

@@ -72,8 +72,9 @@ class Logging {
 	 * @param {string} msg
 	 */
 	debug(msg) {
+		const verbose = process.argv[2] === '-v';
 		const _ = this.#getFormat(4, msg)
-		console.debug(_)
+		if (verbose) console.debug(_)
 	}
 }
 

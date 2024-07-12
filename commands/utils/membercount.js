@@ -12,7 +12,6 @@ module.exports = {
      * @param {SlashCommandBuilder} interaction
      */
     async execute(interaction) {
-        const count = interaction.guild.memberCount;
-        await interaction.reply(`There are currently ${count} members in this server.\n`);
+        await interaction.reply(`There are currently ${interaction.guild.memberCount} members in this server.\n`);
     },
 };

@@ -5,5 +5,7 @@
   "avatarPath": "./contents/sillies.jpg",
   "owner": [
     "1001747794954039368"
-  ]
+  ],
+  "status": "idle",
+  "presenceName": "OneShot"
 }

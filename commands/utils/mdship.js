@@ -12,7 +12,7 @@ module.exports = {
      *
      * @param {SlashCommandBuilder} interaction
      */
-    async execute(interaction) {
+    async execute(interaction, log, chalk) {
         const crypto = require("crypto")
 
         let a = [
@@ -72,6 +72,9 @@ module.exports = {
         //         b.push(`"${a[i]}" ship with "${a[j]}"`)
         //     }
         // }
-        interaction.reply(`**${a[crypto.randomInt(a.length)]}** ship with **${a[crypto.randomInt(a.length)]}**`)
+	var c1 = a[crypto.randomInt(a.length)];
+	var c2 = a[crypto.randomInt(a.length)];
+	log.debug(`${chalk.yellow(interaction.user.username)} Murder Drone ships: ${chalk.green(c1)} x ${chalk.green(c2)}`)
+        interaction.reply(`**${c1}** ship with **${c2}**`)
     },
 };

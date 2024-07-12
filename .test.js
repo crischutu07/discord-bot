@@ -1,8 +1,10 @@
 const fs = require("node:fs")
 const path = require("node:path")
 const Logging = require("./utils/logging")
-const log = new Logging()
-log.label = "CommandTestChecker"
+const isVerbose = process.argv[2] === '-v' || '--verbose';
+const log = new Logger({
+  verbose: isVerbose,
+});
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);

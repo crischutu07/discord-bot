@@ -5,10 +5,12 @@ const { clientId, guildId } = require('./config.json');
 const token = process.env.TOKEN;
 const fs = require('node:fs');
 const path = require('node:path');
-const Logging = require("./utils/logging");
+const Logger = require("./utils/logging");
 const rest = new REST().setToken(token);
-const log = new Logging()
-log.label = "DeployCommands";
+const isVerbose = process.argv[2] === '-v' || '--verbose';
+const log = new Logger({
+  verbose: isVerbose,
+});
 
 BigInt.prototype.toJSON = function() { return this.toString() }
 const commands = [];
@@ -32,7 +34,6 @@ for (const folder of commandFolders) {
     }
   }
 }
-console.log(commands)
 async function _loader(client, guild){
   try {
     log.info(`Registering ${commands.length} commands.`);
@@ -40,7 +41,7 @@ async function _loader(client, guild){
       Routes.applicationGuildCommands(client, guild),
       {body: commands },
     );
-    return log.info(`Loaded ${data.body} commands.`);
+    return log.info(`Loaded ${data.length} commands.`);
   } catch (error) {
     log.error(`${error}`)
     console.error(error)

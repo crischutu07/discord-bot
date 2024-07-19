@@ -28,5 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm audit fix
-    - run: "TOKEN=$TOKEN" > .env
+    - run: echo "TOKEN=$TOKEN" > .env 
     - run: npm test

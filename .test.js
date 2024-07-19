@@ -2,7 +2,7 @@ const fs = require("node:fs")
 const path = require("node:path")
 const Logging = require("./utils/logging")
 const isVerbose = process.argv[2] === '-v' || '--verbose';
-const log = new Logger({
+const log = new Logging({
   verbose: isVerbose,
 });
 

@@ -1,12 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
-module.exports = (client, isVerbose) => {
+module.exports = (client, log) => {
+  this.label = "EventHandler";
   var t1,t2;
-  const Logger = require('../utils/logging');
-  const log = new Logger({
-    verbose: isVerbose,
-    label: "EventHandler"
-  });
   t1 = performance.now()
   const eventsPath = path.join(__dirname, '..', 'events');
   const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));

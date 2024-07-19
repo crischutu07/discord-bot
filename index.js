@@ -1,13 +1,16 @@
 require('dotenv').config()
 
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const fs = require('fs');
+const path = require('path');
 
-const isVerbose = process.argv[2] === '-v' || '--verbose';
+const isVerbose = process.argv[2] === ('-v' || '--verbose') ?? false;
 const Logger = require('./utils/logging');
 const log = new Logger({
   verbose: isVerbose,
 });
-
+if (isVerbose)
+  log.debug("Verbose logging is enabled.")
 const token = process.env.TOKEN;
 const eventHandler = require("./handler/eventHandler");
 const commandHandler = require("./handler/commandsHandler");
@@ -39,11 +42,18 @@ try {
 }
 
 log.info("Loading Handler...")
-
-const eh = eventHandler(client, isVerbose);
-const ch = commandHandler(client, isVerbose);
-
-log.info(`Initalized Handler in ${(eh+ch).toFixed(3)}`)
+const eh = performance.now()
+const handlerPath = path.join(__dirname, 'handler');
+const handlerFiles = fs.readdirSync(handlerPath).filter(file => file.endsWith('.js'));
+for (const file of handlerFiles) {
+  const filePath = path.join(handlerPath, file);
+  const handler = require(filePath);
+  log.label = handler.label;
+  handler(client, log)
+}
+log.label = "Main"
+const ch = performance.now()
+log.info(`Initalized Handler in ${(eh+ch).toFixed(3)}ms`)
 
 client.login(token)
 

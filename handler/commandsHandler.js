@@ -1,12 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 var t1,t2;
-module.exports = (client, isVerbose) => {
-  const Logger = require('../utils/logging');
-  const log = new Logger({
-    verbose: isVerbose,
-    label: "CommandsHandler"
-  });
+module.exports = (client, log) => {
+  this.label = "CommandsHandler"
   t1 = performance.now();
   const foldersPath = path.join(__dirname, '..', 'commands');
   const commandFolders = fs.readdirSync(foldersPath);

@@ -9,7 +9,7 @@
     "start": "npm run reload && npm run main",
     "pfpimage-setup": "node .setupimg-banner_pfp.js",
     "test": "node .test.js",
-    "verbose": "node index.js -v"
+    "verbose": "node index.js -v" 
   },
   "keywords": [],
   "private": true,

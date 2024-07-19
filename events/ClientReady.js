@@ -5,7 +5,6 @@ const presenceType = ActivityType.Playing;
 
 module.exports = {
   name: Events.ClientReady,
-  label: "ClientReady",
   once: true,
   /**
    *
@@ -13,7 +12,7 @@ module.exports = {
    * @param log
    */
   async execute(client, log) {
-    log.label = this.label;
+    log.label = this.name;
     try {
     await client.user.setPresence({
       status: status,
@@ -34,4 +33,3 @@ module.exports = {
     log.setLabel();
   },
 };
-

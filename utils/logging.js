@@ -38,7 +38,7 @@ class Logging {
 	break;
     }
 
-    return `[${hrs}:${min}:${sec}.${ms} ${level}] [${this.label}]: ${msg}`
+    return `[${hrs}:${min}:${sec}.${ms} ${level}] [${chalk.blueBright(this.label)}]: ${msg}`
   }
   /*
    * @param {string} msg

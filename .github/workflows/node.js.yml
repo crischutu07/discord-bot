@@ -25,7 +25,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        env: ${{ secret.TOKEN }}
+        envkey_TOKEN: ${{ secret.TOKEN }}
+        file_name: .env
         cache: 'npm'
     - run: npm ci
     - run: npm audit fix

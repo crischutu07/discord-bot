@@ -7,7 +7,6 @@ module.exports = {
   async execute(interaction, log) {
     log.label = this.label
     if (!interaction.isChatInputCommand()) return;
-
     const command = interaction.client.commands.get(interaction.commandName);
     log.notice(`${chalk.yellow(interaction.user.username)} Issued the command: ${chalk.green(interaction.commandName)}`);
     if (!command) {
@@ -23,12 +22,12 @@ module.exports = {
       console.error(error.stack);
       if (interaction.replied || interaction.deferred) {
         interaction.reply({ content: "There's something wrong while executing this command.", ephemeral: true });
-	return;
+        return;
       } else {
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	return;
+        return;
       }
     }
-  log.setLabel()
+    log.setLabel()
   }
 };

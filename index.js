@@ -12,8 +12,6 @@ const log = new Logger({
 if (isVerbose)
   log.debug("Verbose logging is enabled.")
 const token = process.env.TOKEN;
-const eventHandler = require("./handler/eventHandler");
-const commandHandler = require("./handler/commandsHandler");
 
 let allowedMentions = ["users"]
 
@@ -37,7 +35,8 @@ try {
     process.exit(1)
   }
 } catch (e) {
-  log.error("No token provided");
+  log.error("Invaild token provided")
+  log.debug(e)
   process.exit(1)
 }
 
@@ -48,14 +47,14 @@ const handlerFiles = fs.readdirSync(handlerPath).filter(file => file.endsWith('.
 for (const file of handlerFiles) {
   const filePath = path.join(handlerPath, file);
   const handler = require(filePath);
-  log.label = handler.label;
   handler(client, log)
+  log.label = "Main";
 }
-log.label = "Main"
 const ch = performance.now()
-log.info(`Initalized Handler in ${(eh+ch).toFixed(3)}ms`)
+log.info(`Initalized Handler in ${(eh + ch).toFixed(3)}ms`)
 
-client.login(token)
+client.login(token);
+
 
 process.on('uncaughtException', (err) => {
   log.error(err)

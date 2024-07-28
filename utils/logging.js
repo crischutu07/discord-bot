@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-class Logging {
+module.exports = class Logging {
   constructor({ verbose, label }) {
     this.verbose = verbose ?? false;
     this.label = label ?? "Main";
@@ -20,22 +20,22 @@ class Logging {
     const ms = date.getMilliseconds().toString().padStart(3, "0");
     switch (Number(level)) {
       default:
-	return NaN;
+        return NaN;
       case 0:
-	level = chalk.blueBright("INFO")
-	break;
+        level = chalk.blueBright("INFO")
+        break;
       case 1:
-	level = chalk.yellow("NOTICE")
-	break;
+        level = chalk.yellow("NOTICE")
+        break;
       case 2:
-	level = chalk.yellowBright("WARN")
-	break;
+        level = chalk.yellowBright("WARN")
+        break;
       case 3:
-	level = chalk.red("ERROR")
-	break;
+        level = chalk.red("ERROR")
+        break;
       case 4:
-	level = chalk.cyanBright("DEBUG")
-	break;
+        level = chalk.cyanBright("DEBUG")
+        break;
     }
 
     return `[${hrs}:${min}:${sec}.${ms} ${level}] [${chalk.blueBright(this.label)}]: ${msg}`
@@ -76,5 +76,3 @@ class Logging {
     if (this.verbose) console.debug(_)
   }
 }
-
-module.exports = Logging;

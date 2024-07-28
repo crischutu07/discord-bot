@@ -1,8 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
-var t1,t2;
+var t1, t2;
 module.exports = (client, log) => {
-  this.label = "CommandsHandler"
+  log.label = "CommandsHandler";
   t1 = performance.now();
   const foldersPath = path.join(__dirname, '..', 'commands');
   const commandFolders = fs.readdirSync(foldersPath);
@@ -13,18 +13,18 @@ module.exports = (client, log) => {
       const filePath = path.join(commandsPath, file);
       const command = require(filePath);
       if (command.disabled) {
-	log.notice(`${command.data.name} is disabled, skipping..`)
-	return;
+        log.notice(`${command.data.name} is disabled, skipping..`)
+        return;
       };
       if ('data' && "execute" in command) {
-	log.debug(`Setting up commands: ${command.data.name}`);
-	client.commands.set(command.data.name, command);
+        log.debug(`Setting up commands: ${command.data.name}`);
+        client.commands.set(command.data.name, command);
       } else {
-	log.warn(`${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
+        log.warn(`${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
       }
     }
   }
   t2 = performance.now();
-  log.debug(`Initalized CommandsHandler in ${(t2-t1).toFixed(3)}ms`)
-  return t2-t1;
+  log.debug(`Initalized CommandsHandler in ${(t2 - t1).toFixed(3)}ms`)
+  return t2 - t1;
 }

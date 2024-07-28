@@ -1,8 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 module.exports = (client, log) => {
-  this.label = "EventHandler";
-  var t1,t2;
+  log.label = "EventHandler";
+  var t1, t2;
   t1 = performance.now()
   const eventsPath = path.join(__dirname, '..', 'events');
   const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
@@ -16,6 +16,6 @@ module.exports = (client, log) => {
     }
   }
   t2 = performance.now()
-  log.debug(`Initalized EventHandler in ${(t2-t1).toFixed(3)}ms`)
-  return t2-t1;
+  log.debug(`Initalized EventHandler in ${(t2 - t1).toFixed(3)}ms`)
+  return t2 - t1;
 }

@@ -16,6 +16,7 @@
   "author": "crischutu07",
   "license": "MIT",
   "dependencies": {
+    "@iamtraction/google-translate": "github:iamtraction/google-translate",
     "@types/node": "^18.0.6",
     "chalk": "^4.1.2",
     "date-utils": "^1.2.21",

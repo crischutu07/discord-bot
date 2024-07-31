@@ -6,6 +6,7 @@ module.exports = {
     name: "ping",
     description: "Replies with Pong!",
     required: true,
+    dm_permissions: true,
   },
   /**
    *

@@ -34,12 +34,12 @@ for (const folder of commandFolders) {
     }
   }
 }
-async function _loader(client, guild){
+async function _loader(client, guild) {
   try {
     log.info(`Registering ${commands.length} commands.`);
     const data = await rest.put(
       Routes.applicationGuildCommands(client, guild),
-      {body: commands },
+      { body: commands },
     );
     return log.info(`Loaded ${data.length} commands.`);
   } catch (error) {

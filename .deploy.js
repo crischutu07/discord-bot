@@ -28,10 +28,13 @@ for (const folder of commandFolders) {
       return;
     }
     if ('data' && 'execute' in command) {
-      commands.push(command.data)
-      if (command.data.dm_permissions)
+      if (command.data.dm_permissions) {
         commandsDM.push(command.data)
-      log.debug(`${commands.length} => ${command.data.name}`)
+        log.debug(`${commands.length} => ${command.data.name} (DMs)`)
+      } else {
+        commands.push(command.data)
+        log.debug(`${commands.length} => ${command.data.name} (Global)`)
+      }
     } else {
       log.warn(`${filePath} is missing neither "data" or "execute" property.`);
     }

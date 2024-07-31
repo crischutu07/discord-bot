@@ -14,6 +14,7 @@ const log = new Logger({
 
 BigInt.prototype.toJSON = function() { return this.toString() }
 const commands = [];
+const commandsDM = [];
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 for (const folder of commandFolders) {
@@ -28,6 +29,8 @@ for (const folder of commandFolders) {
     }
     if ('data' && 'execute' in command) {
       commands.push(command.data)
+      if (command.data.dm_permissions)
+        commandsDM.push(command.data)
       log.debug(`${commands.length} => ${command.data.name}`)
     } else {
       log.warn(`${filePath} is missing neither "data" or "execute" property.`);
@@ -35,13 +38,24 @@ for (const folder of commandFolders) {
   }
 }
 async function _loader(client, guild) {
+  var total = [];
   try {
-    log.info(`Registering ${commands.length} commands.`);
-    const data = await rest.put(
+    log.info(`Registering ${commands.length} Guild commands.`);
+    await rest.put(
       Routes.applicationGuildCommands(client, guild),
       { body: commands },
-    );
-    return log.info(`Loaded ${data.length} commands.`);
+    ).then((data) => {
+      log.debug(`Loaded ${data.length} Guild commands`)
+      total.push(data)
+    })
+    log.info(`Registering ${commands.length} DM Commands.`);
+    await rest.put(
+      Routes.applicationCommands(client), { body: commandsDM }
+    ).then((data) => {
+      log.debug(`Loaded ${data.length} DM commands`)
+      total.push(data)
+    })
+    return log.info(`Loaded ${total.length} commands.`);
   } catch (error) {
     log.error(`${error}`)
     console.error(error)

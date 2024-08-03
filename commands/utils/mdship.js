@@ -72,7 +72,11 @@ module.exports = {
     //     }
     // }
     var c1 = a[crypto.randomInt(a.length)];
-    var c2 = a[crypto.randomInt(a.length)];
+    var c2;
+    do {
+      c2 = a[crypto.randomInt(a.length)]
+    } while (c1 === c2)
+
     log.debug(`${chalk.yellow(interaction.user.username)} Murder Drone ships: ${chalk.green(c1)} x ${chalk.green(c2)}`)
     interaction.reply(`**${c1}** ship with **${c2}**`)
   },

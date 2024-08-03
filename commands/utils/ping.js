@@ -13,8 +13,6 @@ module.exports = {
    * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
-    const ping = interaction.client.ws.ping;
-    await interaction.reply(`Pong! ${ping}ms.\n` +
-      `*Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>*`)
+    await interaction.reply(`Pong! ${interaction.client.ws.ping}ms.\n` + `*Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>*`)
   },
 };

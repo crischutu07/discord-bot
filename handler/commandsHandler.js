@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 var t1, t2;
-module.exports = (client, log) => {
+module.exports = async (client, log) => {
   log.label = "CommandsHandler";
   t1 = performance.now();
   const foldersPath = path.join(__dirname, '..', 'commands');
@@ -18,7 +18,7 @@ module.exports = (client, log) => {
       };
       if ('data' && "execute" in command) {
         log.debug(`Setting up commands: ${command.data.name}`);
-        client.commands.set(command.data.name, command);
+        await client.commands.set(command.data.name, command);
       } else {
         log.warn(`${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
       }

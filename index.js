@@ -11,6 +11,7 @@ const log = new Logger({
 });
 if (isVerbose)
   log.debug("Verbose logging is enabled.")
+
 const token = process.env.TOKEN;
 
 let allowedMentions = ["users"]

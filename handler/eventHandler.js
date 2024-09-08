@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-module.exports = (client, log) => {
+module.exports = async (client, log) => {
   log.label = "EventHandler";
   var t1, t2;
   t1 = performance.now()
@@ -10,9 +10,9 @@ module.exports = (client, log) => {
     const filePath = path.join(eventsPath, file);
     const event = require(filePath);
     if (event.once) {
-      client.once(event.name, (...args) => event.execute(...args, log));
+      await client.once(event.name, (...args) => event.execute(...args, log));
     } else {
-      client.on(event.name, (...args) => event.execute(...args, log));
+      await client.on(event.name, (...args) => event.execute(...args, log));
     }
   }
   t2 = performance.now()

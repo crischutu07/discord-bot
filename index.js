@@ -1,4 +1,5 @@
 require('dotenv').config()
+const token = process.env.TOKEN;
 
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
@@ -10,9 +11,8 @@ const log = new Logger({
   verbose: isVerbose,
 });
 if (isVerbose)
-  log.debug("Verbose logging is enabled.")
+  log.notice("Verbose logging is enabled.")
 
-const token = process.env.TOKEN;
 
 let allowedMentions = ["users"]
 

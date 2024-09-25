@@ -63,17 +63,17 @@ module.exports = {
       ["Uzi Doorman", "https://murder-drones.fandom.com/wiki/Uzi_Doorman"],
       ["Yeva", "https://murder-drones.fandom.com/wiki/Yeva"]
     ]);
-    var cb = a.keys().toArray();
+    var cb = a.keys().toArray()
     var c1 = {
       name: cb[randomInt(cb.length)],
       url: a.get(cb[randomInt(cb.length)])
     }
     var c2;
     do {
-    var c2 = {
-      name: cb[randomInt(cb.length)],
-      url: a.get(cb[randomInt(cb.length)])
-    }
+      var c2 = {
+        name: cb[randomInt(cb.length)],
+        url: a.get(cb[randomInt(cb.length)])
+      }
     } while (c1 === c2)
 
     log.debug(`${chalk.yellow(interaction.user.username)} Murder Drone ships: ${chalk.green(c1)} x ${chalk.green(c2)}`)

@@ -6,7 +6,7 @@ module.exports = {
   once: false,
   async execute(interaction, log) {
     log.label = this.label
-    if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand() || interaction.isUserContextMenuCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
     log.notice(`${chalk.yellow(interaction.user.username)} Issued the command: ${chalk.green(interaction.commandName)}`);
     if (!command) {

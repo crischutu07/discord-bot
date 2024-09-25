@@ -8,9 +8,8 @@ module.exports = {
         required: true,
     },
     /**
-     *
-     * @param {SlashCommandBuilder} interaction
-     */
+    * @param {SlashCommandBuilder} interaction
+    */
     async execute(interaction) {
         await interaction.reply(`There are currently ${interaction.guild.memberCount} members in this server.\n`);
     },

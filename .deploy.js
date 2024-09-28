@@ -51,7 +51,7 @@ async function _loader(client, guild) {
       log.debug(`Loaded ${data.length} Guild commands`)
       total.push(data)
     })
-    log.info(`Registering ${commands.length} DM Commands.`);
+    log.info(`Registering ${commandsDM.length} DM Commands.`);
     await rest.put(
       Routes.applicationCommands(client), { body: commandsDM }
     ).then((data) => {

@@ -63,16 +63,19 @@ module.exports = {
       ["Uzi Doorman", "https://murder-drones.fandom.com/wiki/Uzi_Doorman"],
       ["Yeva", "https://murder-drones.fandom.com/wiki/Yeva"]
     ]);
-    var cb = a.keys().toArray()
+    // takes all the keys name (to array)
+    var cb = a.keys().toArray() 
+    var n1 = randomInt(cb.length)
     var c1 = {
-      name: cb[randomInt(cb.length)],
-      url: a.get(cb[randomInt(cb.length)])
+      name: cb[n1],
+      url: a.get(cb[n1])
     }
     var c2;
+    n1 = randomInt(cb.length)
     do {
       var c2 = {
-        name: cb[randomInt(cb.length)],
-        url: a.get(cb[randomInt(cb.length)])
+        name: cb[n1],
+        url: a.get(cb[n1])
       }
     } while (c1 === c2)
 

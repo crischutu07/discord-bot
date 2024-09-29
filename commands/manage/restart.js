@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
-// const process = require('node:child_process');
-const child_process = require("node:child_process");
+const process = require('node:child_process');
 module.exports = {
   data: {
     name: "restart",
@@ -20,15 +19,10 @@ module.exports = {
    */
   async execute(interaction) {
     const stop = interaction.options.getBoolean("stop")
+    interaction.reply(`Killing myself... (${process.pid})`)
     if (stop === true){
-      child_process.exec("taskkill /IM /F node.exe")
-      child_process.exec(`C:\\Program Files\\nodejs\\npm.cmd run start`)
-      console.log(true)
+      process.kill(process.pid)
     }
-    child_process.exec("taskkill /IM /F node.exe", (error, _ignore, stderr) => {
-      if (error || stderr) console.error(`${error || stderr}`);
-    });
-    interaction.reply(`${__dirname}`);
   }
 
 }

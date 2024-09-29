@@ -1,10 +1,11 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
   data: {
     name: "say",
-    description: "Says a thing to he bot",
+    description: "Says a thing to the bot",
+    default_member_permissions: PermissionsBitField.Flags.ManageMessages,
     options: [
       {
         name: "message",

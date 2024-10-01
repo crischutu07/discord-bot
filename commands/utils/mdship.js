@@ -5,8 +5,10 @@ module.exports = {
   data: {
     name: "mdship",
     description: "Random Murder Drones ship generator (really cursed i guess so.)",
-    required: false,
+    contexts: [0,1,2],
+    integration_types: [0,1],
     dm_permissions: true,
+    required: true,
   },
   /**
    *

@@ -29,10 +29,11 @@ module.exports = {
         if (seconds > 0) segments.push(seconds + ' second' + ((seconds === 1) ? '' : 's'));
         return segments.join(', ');
       }
-      await interaction.reply(
+      await interaction.reply("\`\`\`"
         `OS (Operating System): ${os.version}\n` +
         `Uptime: ${uptime()}\n` +
-        `Node.js Version: ${process.version}\n`
+        `Node.js Version: ${process.version}\n` +
+	"`\`\`\`"
       )
   }
 }

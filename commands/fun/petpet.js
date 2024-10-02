@@ -22,7 +22,7 @@ module.exports = {
    * @param {SlashCommandBuilder} interactions
    *
    */
-  async execute(interactions, petpet) {
+  async execute(interactions) {
     const user = interactions.options.getUser('user');
     const petpet = require('pet-pet-gif');
     let animatedGif = await petpet(user.avatarURL(), {

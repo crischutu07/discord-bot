@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, PermissionsBitField, User, UserFlagsBitField } = require('discord.js');
-const petpet = require('pet-pet-gif');
 
 module.exports = {
   disabled: false,
@@ -25,6 +24,7 @@ module.exports = {
    */
   async execute(interactions, petpet) {
     const user = interactions.options.getUser('user');
+    const petpet = require('pet-pet-gif');
     let animatedGif = await petpet(user.avatarURL(), {
       // The width (or height) of the generated gif
       resolution: 128,

@@ -22,10 +22,11 @@ module.exports = {
    * @param log
    */
   async execute(interaction, log) {
+    const { randomInt } = require("crypto")
     let side = interaction.options.getInteger("side") || 1;
     let num = 0;
     for (let i = 0; i < side; i++)
-      num+= Math.floor(Math.random() * 6)
+      num+= randomInt(1,6)
 
     log.debug(`${interaction.user.username} Rolled ${num} (${side} Sides)`)
     if (side === 1)

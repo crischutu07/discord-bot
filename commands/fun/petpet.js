@@ -23,6 +23,6 @@ module.exports = {
    */
   async execute(interactions) {
     const user = interactions.options.getUser('user');
-    interactions.reply({ content: `${user.avatarURL}`, ephemeral: true })
+    interactions.reply({ content: `${user.avatarURL()}`, ephemeral: true })
   }
 }

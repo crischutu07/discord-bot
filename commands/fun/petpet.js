@@ -25,7 +25,7 @@ module.exports = {
   async execute(interactions) {
     const user = interactions.options.getUser('user');
     const petpet = require('pet-pet-gif');
-    let avatar = user.avatarURL();
+    let avatar = user.displayAvatarURL({ extension: 'png' });
     let animatedGif = await petpet(avatar, {
       // The width (or height) of the generated gif
       resolution: 128,

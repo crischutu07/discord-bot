@@ -60,4 +60,5 @@ client.login(token);
 
 process.on('uncaughtException', (err) => {
   log.error(err)
+  console.error(err)
 });

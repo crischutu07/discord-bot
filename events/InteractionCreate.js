@@ -14,18 +14,12 @@ module.exports = {
       log.error(`[${interaction.user.username}] No command matching ${interaction.commandName} was found.`);
       return;
     }
-    // this whole interaction here won't work :sadge:
-    if (interaction.isAutocomplete()) {
-      try {
-        await command.autocomplete(interaction);
-      } catch (error) {
-        log.error(error)
-        console.error(error);
-      }
-    }
 
     try {
+      if (interaction.isAutocomplete())
+        await command.autocomplete(interaction);
       await command.execute(interaction, log, chalk);
+      // this whole interaction here won't work :sadge:
     } catch (error) {
       log.error(error);
       console.error(error.stack);

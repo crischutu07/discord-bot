@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require("discord.js");
-const crypto = require('crypto')
 module.exports = {
   disabled: false,
   data: {

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, User, UserFlagsBitField } = require('discord.js');
+const { SlashCommandBuilder} = require('discord.js');
 
 module.exports = {
   disabled: false,

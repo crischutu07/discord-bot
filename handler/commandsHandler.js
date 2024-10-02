@@ -15,7 +15,7 @@ module.exports = async (client, log) => {
       if (command.disabled) {
         log.notice(`${command.data.name} is disabled, skipping..`)
         return;
-      };
+      }
       if ('data' && "execute" in command) {
         log.debug(`Setting up commands: ${command.data.name}`);
         await client.commands.set(command.data.name, command);

@@ -97,9 +97,9 @@ module.exports = {
         url: a.get(cb[n1])
       }
     } else {
-      if (a.get(characters) === undefined)
-        return interaction.reply({ content: "Please enter a valid Murder Drones characters.\n-# Tip: Use names from **[this](<\https://murder-drones.fandom.com/wiki/Category:Characters>)** pages", ephemeral: true })
-      c1 = {
+      if (!a.get(characters))
+        await interaction.reply({ content: "Please enter a valid Murder Drones characters.\n-# Tip: Use names from **[this](<\https://murder-drones.fandom.com/wiki/Category:Characters>)** pages", ephemeral: true })
+      else c1 = {
         name: characters,
         url: a.get(characters)
       }

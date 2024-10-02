@@ -48,9 +48,7 @@ async function _loader(client, guild) {
       Routes.applicationGuildCommands(client, guild),
       { body: commands },
     ).then((data) => {
-      log.debug(data)
       log.debug(`Loaded ${data.length} Guild commands`)
-      log.debug(commands)
       total.push(data)
     })
     log.info(`Registering ${commandsDM.length} DM Commands.`);
@@ -58,7 +56,6 @@ async function _loader(client, guild) {
       Routes.applicationCommands(client), { body: commandsDM }
     ).then((data) => {
       log.debug(`Loaded ${data.length} DM commands`)
-      log.debug(commandsDM)
       total.push(data)
     })
     return log.info(`Loaded ${total.length} commands.`);

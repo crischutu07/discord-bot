@@ -52,7 +52,8 @@ for (const file of handlerFiles) {
   log.label = "Main";
 }
 const ch = performance.now()
-log.info(`Initalized Handler in ${(eh + ch).toFixed(3)}ms`)
+log.info(`Initialized Handler in ${(eh + ch).toFixed(3)}ms`)
+
 
 client.login(token);
 

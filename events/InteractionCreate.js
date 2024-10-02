@@ -6,13 +6,22 @@ module.exports = {
   once: false,
   async execute(interaction, log) {
     log.label = this.label
-    if (!interaction.isChatInputCommand() || interaction.isUserContextMenuCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
     log.notice(`${chalk.yellow(interaction.user.username)} Issued the command: ${chalk.green(interaction.commandName)}`);
     if (!command) {
       interaction.reply("Command is not available.")
       log.error(`[${interaction.user.username}] No command matching ${interaction.commandName} was found.`);
       return;
+    }
+    // this whole interaction here won't work :sadge:
+    if (interaction.isAutocomplete()) {
+      try {
+        await command.autocomplete(interaction);
+      } catch (error) {
+        log.error(error)
+        console.error(error);
+      }
     }
 
     try {

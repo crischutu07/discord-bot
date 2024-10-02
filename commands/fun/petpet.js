@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField, User, UserFlagsBitField } = require('discord.js');
+const { SlashCommandBuilder, User, UserFlagsBitField } = require('discord.js');
 
 module.exports = {
   disabled: false,
@@ -15,11 +15,6 @@ module.exports = {
         required: true,
         type: 6,
       },
-      {
-        name: "delay",
-        description: "Delay each frames in milliseconds. (Default is 20ms)",
-        type: 4,
-      },
     ]
   },
   /**
@@ -29,17 +24,12 @@ module.exports = {
    */
   async execute(interactions) {
     const user = interactions.options.getUser('user');
-    const delay = interactions.options.getInteger('delay') || 30;
-    if (delay > 512) {
-      interactions.reply({ content: `You can't set delay value larger thsn 512\n-# Your value: ${delay}`, ephemeral: true })
-    }
     const petpet = require('pet-pet-gif');
     let avatar = user.displayAvatarURL({ extension: 'png' });
     let animatedGif = await petpet(avatar, {
       // The width (or height) of the generated gif
       resolution: 128,
-      delay: delay,
-      // Other values could be the string "rgba(123, 233, 0, 0.5)". Defaults to null - i.e. transparent.
+      delay: 30,
       backgroundColor: null
     })
     interactions.reply({ files: [{ name: 'petpet.gif', attachment: animatedGif }], ephemeral: false })

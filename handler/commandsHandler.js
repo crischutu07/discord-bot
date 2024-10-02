@@ -25,6 +25,6 @@ module.exports = async (client, log) => {
     }
   }
   t2 = performance.now();
-  log.debug(`Initalized CommandsHandler in ${(t2 - t1).toFixed(3)}ms`)
+  log.debug(`Initialized CommandsHandler in ${(t2 - t1).toFixed(3)}ms`)
   return t2 - t1;
 }

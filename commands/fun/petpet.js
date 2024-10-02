@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, PermissionsBitField, User, UserFlagsBitField } = require('discord.js');
-const petPetGif = require('pet-pet-gif');
+const petpet = require('pet-pet-gif');
 
 module.exports = {
   disabled: false,

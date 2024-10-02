@@ -18,7 +18,7 @@ module.exports = {
       {
         name: "delay",
         description: "Delay each frames in milliseconds. (Default is 20ms)",
-        type: "NUMBER",
+        type: 4,
       },
     ]
   },
@@ -29,7 +29,7 @@ module.exports = {
    */
   async execute(interactions) {
     const user = interactions.options.getUser('user');
-    const delay = interactions.options.getNumber('delay') || 30;
+    const delay = interactions.options.getInteger('delay') || 30;
     if (delay > 512) {
       interactions.reply({ content: `You can't set delay value larger thsn 512\n-# Your value: ${delay}`, ephemeral: true })
     }

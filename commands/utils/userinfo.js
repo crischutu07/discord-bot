@@ -24,7 +24,7 @@ module.exports = {
       .setColor('#0098ff')
       .setTitle(`${member.user.displayName}`)
       .setURL(`https://discordlookup.com/user/${user.id}`)
-      .setAuthor({ name: `User infomations: ${user.username}`, iconURL: `${infoIcon}` })
+      .setAuthor({ name: `User informations: ${user.username}`, iconURL: `${infoIcon}` })
       .setDescription(`Display: ${member.user.displayName}`)
       .setThumbnail(`${member.displayAvatarURL()}`)
       .addFields(

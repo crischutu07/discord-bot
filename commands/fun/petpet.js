@@ -34,6 +34,6 @@ module.exports = {
       // Other values could be the string "rgba(123, 233, 0, 0.5)". Defaults to null - i.e. transparent.
       backgroundColor: null
     })
-    interactions.reply({ files: [animatedGif], ephemeral: true })
+    interactions.reply({ files: [{ name: 'petpet.gif', attachment: animatedGif}], ephemeral: true })
   }
 }

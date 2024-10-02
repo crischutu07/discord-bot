@@ -25,7 +25,8 @@ module.exports = {
   async execute(interactions) {
     const user = interactions.options.getUser('user');
     const petpet = require('pet-pet-gif');
-    let animatedGif = await petpet(user.avatarURL(), {
+    let avatar = user.avatarURL();
+    let animatedGif = await petpet(avatar, {
       // The width (or height) of the generated gif
       resolution: 128,
       // Delay between each frame in milliseconds. Defaults to 20.

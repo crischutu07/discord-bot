@@ -14,7 +14,12 @@ module.exports = {
         description: "User you want to pet.",
         required: true,
         type: 6,
-      }
+      },
+      {
+        name: "delay",
+        description: "Delay each frames in milliseconds. (Default is 20ms)",
+        type: "NUMBER",
+      },
     ]
   },
   /**
@@ -24,16 +29,19 @@ module.exports = {
    */
   async execute(interactions) {
     const user = interactions.options.getUser('user');
+    const delay = interactions.options.getNumber('delay') || 30;
+    if (delay > 512) {
+      interactions.reply({ content: `You can't set delay value larger thsn 512\n-# Your value: ${delay}`, ephemeral: true })
+    }
     const petpet = require('pet-pet-gif');
     let avatar = user.displayAvatarURL({ extension: 'png' });
     let animatedGif = await petpet(avatar, {
       // The width (or height) of the generated gif
       resolution: 128,
-      // Delay between each frame in milliseconds. Defaults to 20.
-      delay: 20,
+      delay: delay,
       // Other values could be the string "rgba(123, 233, 0, 0.5)". Defaults to null - i.e. transparent.
       backgroundColor: null
     })
-    interactions.reply({ files: [{ name: 'petpet.gif', attachment: animatedGif}], ephemeral: true })
+    interactions.reply({ files: [{ name: 'petpet.gif', attachment: animatedGif }], ephemeral: false })
   }
 }

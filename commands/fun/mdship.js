@@ -53,8 +53,8 @@ module.exports = {
   data: {
     name: "mdship",
     description: "Random Murder Drones ship generator (really cursed i guess so.)",
-    contexts: [0,1,2],
-    integration_types: [0,1],
+    contexts: [0, 1, 2],
+    integration_types: [0, 1],
     dm_permissions: true,
     required: true,
     options: [
@@ -87,7 +87,7 @@ module.exports = {
    */
   async execute(interaction, log, chalk) {
     const characters = interaction.options.getString('characters');
-    const {randomInt} = require("crypto");
+    const { randomInt } = require("crypto");
     // takes all the keys name (to array) (toArray() function in Map only works in Node.js v20.17.0)
     let c1;
     let n1 = randomInt(cb.length);
@@ -97,7 +97,7 @@ module.exports = {
         url: a.get(cb[n1])
       }
     } else {
-      if (!a.get(characters))
+      if (a.get(characters) === undefined)
         interaction.reply({ content: "Please enter a valid Murder Drones characters.\n-# Tip: Use names from **[this](<\https://murder-drones.fandom.com/wiki/Category:Characters>)** pages", ephemeral: true })
       c1 = {
         name: characters,

@@ -18,7 +18,7 @@ module.exports = {
     const sent = await interaction.reply({ content: "Pinging..", ephemeral: true, fetchReply: true })
     interaction.editReply({ content: "Pong!\n" + 
       `Websocket: \`${interaction.client.ws.ping}ms\`\n` + 
-      `Roundtrip Latency: \`${sent.createdTimestamp - interaction.createdTimestamp}ms\`\n` +
+      `API (Bot => Discord API): \`${sent.createdTimestamp - interaction.createdTimestamp}ms\`\n` +
       `-# Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>`, ephemeral: true })
   },
 };

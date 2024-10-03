@@ -21,7 +21,7 @@ module.exports = {
     const stop = interaction.options.getBoolean("stop")
     interaction.reply(`Killing myself... (${process.pid})`)
     if (stop === true){
-      process.kill(process.pid)
+      process.exit()
     }
   }
 

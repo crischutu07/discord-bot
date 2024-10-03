@@ -15,6 +15,10 @@ module.exports = {
    * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
-    await interaction.reply({ content: `Pong! ${interaction.client.ws.ping}ms.\n` + `-# Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>`, ephemeral: true})
+    const sent = interaction.reply({ content: "Pinging..", ephemeral: true })
+    interaction.editReply({ content: "Pong!\n" + 
+      `Websocket: \`${interaction.client.ws.ping}ms\`\n` + 
+      `Roundtrip Latency: \`${sent.createdTimestamp - interaction.createdTimestamp}ms\`` +
+      `-# Sent the message at: <t:${(interaction.createdTimestamp / 1000).toFixed()}:F>`, ephemeral: true })
   },
 };

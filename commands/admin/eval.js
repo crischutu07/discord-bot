@@ -17,6 +17,7 @@ module.exports = {
   /**
    *
    * @param {SlashCommandBuilder} interaction
+   * @param log
    */
   async execute(interaction, log) {
     const userEval = interaction.options.getString('eval');

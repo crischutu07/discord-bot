@@ -81,7 +81,7 @@ module.exports = {
    *
    * @param {SlashCommandBuilder} interaction
    * @param {log} log
-   * @param {chalk} chalk
+   * @param chalk
    */
   async execute(interaction, log, chalk) {
     const characters = interaction.options.getString('characters');

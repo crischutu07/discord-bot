@@ -18,6 +18,7 @@ module.exports = {
   /**
    *
    * @param {SlashCommandBuilder} interaction
+   * @param log
    */
   async execute(interaction, log) {
     const str = interaction.options.getString('message');

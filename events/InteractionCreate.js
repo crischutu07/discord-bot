@@ -1,5 +1,4 @@
 const { Events } = require("discord.js");
-const chalk = require('chalk')
 module.exports = {
   name: Events.InteractionCreate,
   label: "InteractionCreate",
@@ -16,10 +15,10 @@ module.exports = {
     try {
       if (interaction.isAutocomplete())
         try {
-          await command.autocomplete(interaction);
+          await command.autocomplete(interaction, log);
         } catch { return }
       else
-        await command.execute(interaction, chalk);
+        await command.execute(interaction, log);
     } catch (error) {
       log.error(error);
       console.error(error.stack);

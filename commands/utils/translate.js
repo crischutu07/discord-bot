@@ -6,6 +6,10 @@ module.exports = {
   data: {
     name: "translate",
     description: "Translate a messages.",
+    contexts: [0,1,2],
+    integration_types: [0,1],
+    required: true,
+    dm_permissions: true,
     options: [
       {
         name: "messages",
@@ -18,6 +22,7 @@ module.exports = {
   /**
    *
    * @param {SlashCommandBuilder} interaction
+   * @param {log} log
    */
   async execute(interaction, log) {
     const contents = interaction.options.getString('messages');

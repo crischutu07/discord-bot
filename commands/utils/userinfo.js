@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
-var infoIcon = 'https://i.imgur.com/tjevwUV.png';
-var userRound = 'https://i.imgur.com/Xpa0SWO.png';
+let infoIcon = 'https://i.imgur.com/tjevwUV.png';
+let userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
   disabled: false,
   data: {
@@ -24,7 +24,7 @@ module.exports = {
       .setColor('#0098ff')
       .setTitle(`${member.user.displayName}`)
       .setURL(`https://discordlookup.com/user/${user.id}`)
-      .setAuthor({ name: `User informations: ${user.username}`, iconURL: `${infoIcon}` })
+      .setAuthor({ name: `User information: ${user.username}`, iconURL: `${infoIcon}` })
       .setDescription(`Display: ${member.user.displayName}`)
       .setThumbnail(`${member.displayAvatarURL()}`)
       .addFields(
@@ -34,15 +34,5 @@ module.exports = {
       .setTimestamp()
       .setFooter({ text: `ID: ${user.id}`, iconURL: userRound }); // add iconURL
     interaction.reply({ embeds: [userinfoEmbed] });
-    // if (user){ // target info
-    //   await interaction.reply({
-    //     content: `**${user.username}'s** Infomations:\nJoined the server since: <t:${(member.joinedTimestamp / 1000).toFixed()}>\nAccount created since: <t:${(user.createdTimestamp / 1000).toFixed()}:F>`,
-    //     ephemeral: true})
-    // } else { // user's info
-    //   await interaction.reply(  {
-    //     content: `**${user.username}'s** Infomations:\nJoined the server since: <t:${(interaction.member.joinedTimestamp / 1000).toFixed()}:F>`,
-    //     ephemeral: true
-    //   })
-    // }
   },
 };

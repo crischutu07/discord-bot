@@ -6,20 +6,20 @@ module.exports = {
   once: false,
   async execute(interaction, log) {
     log.label = this.label
-    if (!interaction.isChatInputCommand()) return;
+    // if (!interaction.isChatInputCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
-    log.notice(`${chalk.yellow(interaction.user.username)} Issued the command: ${chalk.green(interaction.commandName)}`);
     if (!command) {
       interaction.reply("Command is not available.")
       log.error(`[${interaction.user.username}] No command matching ${interaction.commandName} was found.`);
       return;
     }
-
     try {
       if (interaction.isAutocomplete())
-        await command.autocomplete(interaction);
-      await command.execute(interaction, log, chalk);
-      // this whole interaction here won't work :sadge:
+        try {
+          await command.autocomplete(interaction);
+        } catch { return }
+      else
+        await command.execute(interaction, chalk);
     } catch (error) {
       log.error(error);
       console.error(error.stack);

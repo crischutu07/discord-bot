@@ -22,15 +22,14 @@ module.exports = {
 	type: presenceType,
       }]
     })
-    log.debug(`Client status: ${status}`)
-    log.debug(`Presence Name: ${presenceName} (${presenceType})`)
-    log.debug(`Tag: ${chalk.yellow(client.user.tag)} (${chalk.green(client.user.id)})`);
-    log.debug(`Display Name: ${chalk.blue(client.user.displayName)}`)
+    log.notice(`Client status: ${status}`)
+    log.notice(`Presence Name: ${presenceName} (${presenceType})`)
+    log.notice(`Tag: ${chalk.yellow(client.user.tag)} (${chalk.green(client.user.id)})`);
+    log.notice(`Display Name: ${chalk.blue(client.user.displayName)}`)
     } catch(e){
       log.error(e)
     }
     log.info(`Ready! Logged in as ${chalk.green(client.user.username)}`);
-
     log.setLabel();
   },
 };

@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 module.exports = async (client, log) => {
   log.label = "EventHandler";
-  var t1, t2;
+  let t1, t2;
   t1 = performance.now()
   const eventsPath = path.join(__dirname, '..', 'events');
   const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));

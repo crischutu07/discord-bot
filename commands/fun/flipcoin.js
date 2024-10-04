@@ -6,6 +6,9 @@ module.exports = {
     name: "flipcoin",
     description: "Flip a coin.",
     required: true,
+    dm_permissions: true,
+    contexts: [0, 1, 2],
+    integration_types: [0, 1],
   },
   /**
    *

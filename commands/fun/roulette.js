@@ -5,7 +5,6 @@ module.exports = {
     data: {
         name: "roulette",
         description: "Play a game of Russian Roulette!",
-        required: true,
         contexts: [0, 1, 2],
         dm_permissions: true,
         integration_types: [0, 1],

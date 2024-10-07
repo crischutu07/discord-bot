@@ -5,7 +5,7 @@ module.exports = {
   disabled: false,
   data: {
     name: "translate",
-    description: "Translate a messages.",
+    description: "Translate a messages (NOT 100% CORRECT)",
     contexts: [0,1,2],
     integration_types: [0,1],
     required: true,

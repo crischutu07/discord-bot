@@ -1,4 +1,4 @@
-const { SlashCommandBuilder} = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   disabled: false,
@@ -32,6 +32,12 @@ module.exports = {
       delay: 30,
       backgroundColor: null
     })
-    interactions.reply({ files: [{ name: 'petpet.gif', attachment: animatedGif }], ephemeral: false })
+    interactions.reply({
+      files: [{
+        name: 'petpet.gif',
+        attachment: animatedGif
+      }],
+      ephemeral: false
+    })
   }
 }

@@ -40,25 +40,26 @@ for (const folder of commandFolders) {
     }
   }
 }
+
 async function _loader(client, guild) {
-  var total = [];
+  const total = [];
   try {
     log.info(`Registering ${commands.length} Guild commands.`);
     await rest.put(
       Routes.applicationGuildCommands(client, guild),
       { body: commands },
     ).then((data) => {
-      log.debug(`Loaded ${data.length} Guild commands`)
+      log.debug(`[REST] Loaded ${data.length} Guild commands`)
       total.push(data)
     })
     log.info(`Registering ${commandsDM.length} DM Commands.`);
-    await rest.put(
+    await rest.put( // register global commands
       Routes.applicationCommands(client), { body: commandsDM }
     ).then((data) => {
-      log.debug(`Loaded ${data.length} DM commands`)
+      log.debug(`[REST] Loaded ${data.length} DM commands`)
       total.push(data)
     })
-    return log.info(`Loaded ${total.length} commands.`);
+    return log.info(`Loaded total ${total.length} commands.`);
   } catch (error) {
     log.error(`${error}`)
     console.error(error)

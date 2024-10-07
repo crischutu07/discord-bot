@@ -7,7 +7,6 @@ module.exports = {
     contexts: [0,1,2],
     integration_types: [0,1],
     dm_permissions: true,
-    required: true,
     options: [
       {
         name: "side",

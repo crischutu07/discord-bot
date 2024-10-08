@@ -29,7 +29,7 @@ module.exports = {
       return segments.join(', ');
     }
     await interaction.reply("\`\`\`" +
-      `OS (Operating System): ${os.version}\n` +
+      `OS (Operating System): ${os.version} (${os.type()} ${os.arch()})\n` +
       `Uptime (Bot): ${uptime(process.uptime())}\n` +
       `Uptime (System): ${uptime(os.uptime())}\n` +
       `Node.js Version: ${process.version}\n` +

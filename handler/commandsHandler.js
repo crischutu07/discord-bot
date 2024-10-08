@@ -16,12 +16,12 @@ module.exports = async (client, log) => {
         log.notice(`${command.data.name} is disabled, skipping..`)
         return;
       }
-      if ('data' && "execute" in command) {
-        log.debug(`Setting up commands: ${command.data.name}`);
-        await client.commands.set(command.data.name, command);
-      } else {
+      if (!'data' in command)
         log.warn(`${filePath} is missing a required "data" (SlashCommandBuilder) or "execute" property.`);
-      }
+      if (!'execute' in command)
+        log.warn(`${command.data.name} is missing execute function (SlashCommandBuilder).1`)
+      log.debug(`Setting up commands: ${command.data.name}`);
+      await client.commands.set(command.data.name, command);
     }
   }
   t2 = performance.now();

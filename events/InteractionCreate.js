@@ -6,6 +6,7 @@ module.exports = {
   once: false,
   async execute(interaction, log) {
     log.label = this.label
+    let modal;
     // if (!interaction.isChatInputCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command) {
@@ -15,13 +16,12 @@ module.exports = {
     }
     try {
       if (interaction.isAutocomplete())
-        try {
           await command.autocomplete(interaction, log, chalk);
-        } catch { return }
-      else {
-        await command.execute(interaction, log, chalk);
-        log.info(`${interaction.user.username} Issued: ${interaction.commandName}`)
-      }
+      else if (interaction.isModalSubmit())
+          modal = await command.handleModal(interaction, log, chalk)
+      else if ('execute' in command)
+        await command.execute(interaction, log, chalk, modal);
+      log.info(`${interaction.user.username} Issued: ${interaction.commandName}`)
     } catch (error) {
       log.error(error);
       console.error(error.stack);

@@ -73,7 +73,7 @@ module.exports = {
     dm_permissions: true,
     options: [{
       name: 'decode',
-      description: "Decode messages with parkour languages",
+      description: "Decode messages with parkour uages",
       type: 1,
       options: [{
         name: 'messages',
@@ -137,7 +137,7 @@ module.exports = {
           ephemeral: true
         });
       return await interaction.reply("```\n" +
-        `${output.join('').toString()}` +
+        `${output.join('').toString()}\n` +
         "```\n");
     } else if (subcommand === 'encode'){
       let output = [];
@@ -164,23 +164,13 @@ module.exports = {
         });
       else
         return await interaction.reply("```\n" +
-          `${output.join(' ').toString()}` +
+          `${output.join(' ').toString()}\n` +
           "```\n");
     } else if (subcommand === 'about'){
       await interaction.reply({
         content: "## [@ashmellow78's](<\https://x.com/ashmellow78>) Parkour Languages (Inspired)\n" +
           "**The Language itself can be found [here](<https://parkourcivilization.fandom.com/wiki/Parkour_Language>)**\n" +
         "-# More information of how these works by visit [this](<\https://x.com/ashmellow78/status/1841763587393474932>) tweet.",
-        files: [{
-          attachment: 'https://pbs.twimg.com/media/GY9BZ7pWEAEOGsW?format=jpg',
-          name: 'image1.jpg',
-        }, {
-          attachment: 'https://pbs.twimg.com/media/GY9BbrEWIAAPWsa?format=jpg',
-          name: 'image2.jpg',
-        }, {
-          attachment: 'https://pbs.twimg.com/media/GY9BayVW4AAtfwb?format=jpg',
-          name: 'image3.jpg',
-        }],
         ephemeral: true
       })
     }

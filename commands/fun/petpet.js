@@ -29,7 +29,7 @@ module.exports = {
     let animatedGif = await petpet(avatar, {
       // The width (or height) of the generated gif
       resolution: 128,
-      delay: 30,
+      delay: 20,
       backgroundColor: null
     })
     interactions.reply({

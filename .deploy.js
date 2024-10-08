@@ -27,7 +27,7 @@ for (const folder of commandFolders) {
       log.notice(`${command.data.name} is now disabled.`)
       return;
     }
-    if ('data' && 'execute' in command) {
+    if ('data' in command) {
       if (command.data.dm_permissions) {
         commandsDM.push(command.data)
         log.debug(`${commands.length} => ${command.data.name} (Global)`)
@@ -36,7 +36,7 @@ for (const folder of commandFolders) {
         log.debug(`${commands.length} => ${command.data.name} (Guild)`)
       }
     } else {
-      log.warn(`${filePath} is missing neither "data" or "execute" property.`);
+      log.warn(`${filePath} is missing "data"`);
     }
   }
 }

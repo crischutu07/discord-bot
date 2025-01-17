@@ -23,8 +23,7 @@
     "discord-api-types": "^0.37.79",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
-    "os-utils": "^0.0.14",
-    "pet-pet-gif": "^1.0.9"
+    "os-utils": "^0.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.2",

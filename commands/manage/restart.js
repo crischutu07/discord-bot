@@ -11,11 +11,9 @@ module.exports = {
    * @param {SlashCommandBuilder} interaction
    */
   async execute(interaction) {
-      await interaction.reply("restarting...");
-      child.exec("pm2 start npm -- start", (err) => {
-        if(err) return console.error(err)
-      })
-
+    await interaction.reply("restarting...");
+    child.exec("pm2 start npm -- start", (err) => {
+      if(err) return console.error(err)
+    })
   }
-
 }

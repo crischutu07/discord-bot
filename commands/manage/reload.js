@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 // TODO: Add reload global
 module.exports = {
-  disabled: false,
+  disabled: true,
   data: {
     name: "reload",
     default_member_permissions: PermissionsBitField.Flags.Administrator,

@@ -10,7 +10,10 @@ module.exports = {
     // if (!interaction.isChatInputCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command) {
-      interaction.reply("Command is not available.")
+      interaction.reply({
+	content: "Command is not available.",
+	ephemeral: true
+      })
       log.error(`[${interaction.user.username}] No command matching ${interaction.commandName} was found.`);
       return;
     }

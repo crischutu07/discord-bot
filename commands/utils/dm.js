@@ -1,10 +1,11 @@
-const { BaseInteraction } = require('discord.js');
+const { BaseInteraction, PermissionsBitField } = require('discord.js');
 
 module.exports = {
   disabled: false,
   data: {
     name: "dm",
     description: "send a Direct Message to the specified user.",
+    default_member_permissions: PermissionsBitField.Flags.Administrator,
     options: [
       {
         name: "user",
@@ -27,7 +28,8 @@ module.exports = {
     const member = interaction.guild.members.cache.get(user.id)
     try {
       await interaction.user.send(`You sent an DM to ${user.username} the followings content:\n\n${msg}`);
-      await user.send(`From ${interaction.user.username} at <t:${(interaction.createdTimestamp / 1000).toFixed()}>\n\n${msg}`);
+      //      await user.send(`From ${interaction.user.username} at <t:${(interaction.createdTimestamp / 1000).toFixed()}>\n\n${msg}`);
+      await user.send(`${msg}`)
       return interaction.reply({ content: `You sent ${user.username} the following contents:\n\n${msg}`, ephemeral: true })
       // return interaction.followUp(`Sent the message to **${member.user.username}**!\n\nContents: "${msg}"`)
     } catch {

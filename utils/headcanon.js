@@ -93,7 +93,7 @@ const headcanon = (name) => {
     `${name} has a pet ${randomElement(pet)}.`,
     `${name} would buy clothes from the soup store.`,
     `${name} is ${randomElement(['a youngest','a middle','an oldest'])} child.`,
-    `${name} can play the {piano|guitar|kazoo}.`,
+    `${name} can play the ${randomElement(['piano','guitar','kazoo'])}.`,
     `${name} knows fnaf lore.`,
     `${name} is an ${randomElement(["introvert", "extrovert"])}.`,
     `${name} ${randomElement(["can", "cannot"])} drive.`,

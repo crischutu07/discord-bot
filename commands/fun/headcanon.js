@@ -24,7 +24,11 @@ module.exports = {
    */
   async execute(interaction){
     const headcanon = require("../../utils/headcanon.js");
-    let response = await headcanon(`__${interaction.options.getString('character')}__`)
+    let name = interaction.options.getString('character');
+    if (name.length > 32){
+      return await interaction.reply("Character names must less than 32 character.")
+    }
+    let response = await headcanon(`__${name}__`)
     await interaction.reply(response);
   }
 }

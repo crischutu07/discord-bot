@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
 const child = require('child_process');
 module.exports = {
+  disabled: false,
   data: {
     name: "restart",
     description: "Restart the bot",

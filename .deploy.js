@@ -20,13 +20,12 @@ const commandFolders = fs.readdirSync(foldersPath);
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-  console.debug(commandsPath, commandFiles)
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
     if (command.disabled === true) {
       log.notice(`${command.data.name} is now disabled.`)
-      return;
+      continue;
     }
     if ('data' in command) {
       if (command.data.dm_permissions) {
@@ -50,24 +49,23 @@ async function _loader(client, guild) {
       Routes.applicationGuildCommands(client, guild),
       { body: commands },
     ).then((data) => {
-      log.debug(`[REST] Loaded ${data.length} Guild commands`)
+      log.notice(`[REST] Loaded ${data.length} Guild commands`)
       total.push(data)
     })
     log.info(`Registering ${commandsDM.length} DM Commands.`);
     await rest.put( // register global commands
       Routes.applicationCommands(client), { body: commandsDM }
     ).then((data) => {
-      log.debug(`[REST] Loaded ${data.length} DM commands`)
+      log.notice(`[REST] Loaded ${data.length} DM commands`)
       total.push(data)
     })
-    return log.info(`Loaded total ${total.length} commands.`);
+    log.info(`Loaded total ${total.length} commands.`);
   } catch (error) {
     log.error(`${error}`)
     console.error(error)
   }
 }
 _loader(clientId, guildId)
-
 
 process.on('uncaughtExpection', (err) => {
   log.error(err)

@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 let infoIcon = 'https://i.imgur.com/tjevwUV.png';
 let userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
-  disabled: false,
+  disabled: true,
   data: {
     name: "userinfo",
     description: "Check about the user information.",

@@ -1,7 +1,7 @@
 const { PermissionsBitField, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-  disabled: false,
+  disabled: true,
   data: {
     name: "say",
     description: "Says a thing to the bot",

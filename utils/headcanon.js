@@ -58,7 +58,7 @@ const headcanon = (name) => {
     `${name} is in your house.`,
     `${name} shops exclusively at ${randomElement(["Hot Topic", "Claires", "thrift stores"])}.`,
     `${name} does not know how to read.`,
-    `${name} knows the lyrics to [song] by heart.`,
+    `${name} knows the lyrics to ${randomElement(song)} by heart.`,
     `${name} was dropped out of a window as a child.`,
     `${name} is very good at walking in platform heels.`,
     `${name} is ${randomElement(sexuality)}.`,

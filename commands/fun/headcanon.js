@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 module.exports = {
   disabled: false,
   data: {
@@ -19,7 +19,7 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    * @param log
    */
   async execute(interaction){
@@ -29,6 +29,6 @@ module.exports = {
       return await interaction.reply("Character names must less than 32 character.")
     }
     let response = await headcanon(`__${name}__`)
-    await interaction.reply(response);
+    await interaction.reply(`Headcanon: ${response}`);
   }
 }

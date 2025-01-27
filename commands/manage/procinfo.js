@@ -10,7 +10,8 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
+   * @param log
    */
   async execute(interaction) {
     function uptime(uptime){

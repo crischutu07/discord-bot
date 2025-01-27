@@ -1,7 +1,7 @@
-const { BaseInteraction, PermissionsBitField } = require('discord.js');
+const { Events, PermissionsBitField } = require('discord.js');
 
 module.exports = {
-  disabled: false,
+  disabled: true,
   data: {
     name: "dm",
     description: "send a Direct Message to the specified user.",
@@ -20,7 +20,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {BaseInteraction} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async execute(interaction) {
     const msg = interaction.options.getString('message') || "Hello, World!";

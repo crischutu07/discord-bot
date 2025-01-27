@@ -29,6 +29,7 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+client.cooldown = new Collection();
 
 try {
   if (!token) {

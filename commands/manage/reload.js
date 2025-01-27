@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { Events, PermissionsBitField } = require('discord.js');
 // TODO: Add reload global
 module.exports = {
   disabled: true,
@@ -17,7 +17,7 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async execute(interaction) {
     const commandName = interaction.options.getString('command', true).toLowerCase();

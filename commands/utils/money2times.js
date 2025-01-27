@@ -1,4 +1,4 @@
-const { BaseInteraction } = require("discord.js");
+const { Events } = require("discord.js");
 
 module.exports = {
   data: {
@@ -23,7 +23,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {BaseInteraction} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async execute(interaction) {
     const rate = interaction.options.getInteger('rate');

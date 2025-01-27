@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 const crypto = require('crypto')
 module.exports = {
     disabled: false,
@@ -10,7 +10,7 @@ module.exports = {
         integration_types: [0, 1],
     },
     /**
-     * @param {SlashCommandBuilder} interaction
+     * @param {Events.InteractionCreate} interaction
      */
     async execute(interaction) {
         const coin = !!crypto.randomInt(2);

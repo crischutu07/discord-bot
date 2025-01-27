@@ -8,7 +8,6 @@ module.exports = {
   label: "Ready",
   once: true,
   /**
-   *
    * @param client
    * @param log
    */

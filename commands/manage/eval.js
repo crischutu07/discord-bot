@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js')
-
+const { Events, PermissionsBitField } = require('discord.js')
+const {ownerId} = require('../../config.json')
 module.exports = {
   disabled: false,
   data: {
@@ -16,19 +16,29 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    * @param log
    */
   async execute(interaction, log) {
     const userEval = interaction.options.getString('eval');
+    if (!interaction.user.id === ownerId) return interaction.reply({ 
+      content: "Only owner of this bot can execute this command!", 
+      ephemeral: true 
+    });
     log.debug("User eval: " + userEval)
     try {
     const output = eval(userEval)
     log.debug("Eval output: " + output)
-    interaction.reply('Output: ```js\n' + output + '\n```')
+    interaction.reply({ 
+      content: 'Output: ```js\n' + output + '\n```', 
+      ephemeral: true
+    })
     } catch(e){
       log.debug("User error: " + e);
-      interaction.reply('Error: ```js\n' + e + '\n```')
+      interaction.reply({
+        content: 'Error: ```js\n' + e + '\n```',
+        ephemeral: true
+      })
     }   
   }
 }

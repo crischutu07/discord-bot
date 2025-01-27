@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 
 module.exports = {
     disabled: false,
@@ -7,7 +7,7 @@ module.exports = {
         description: "Shows amount of joined members in the server",
     },
     /**
-    * @param {SlashCommandBuilder} interaction
+    * @param {Events.InteractionCreate} interaction
     */
     async execute(interaction) {
         await interaction.reply(`Member: ${interaction.guild.memberCount}`);

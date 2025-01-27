@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 const letter = {
   'a': '[]____ ',
   'b': '/_/_ ',
@@ -101,7 +101,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    * @param log
    */
   async execute(interaction, log) {

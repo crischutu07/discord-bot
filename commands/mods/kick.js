@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionsBitField } = require('discord.js');
+const { Events, PermissionsBitField } = require("discord.js");
 module.exports = {
   disabled: false,
   data: {
@@ -16,30 +16,47 @@ module.exports = {
         name: "reason",
         description: "The user you want to kick,",
         type: 3,
-      }
-    ]
+      },
+    ],
   },
   /**
    *
-   * @param {SlashCommandBuilder} interactions
+   * @param {Events.InteractionCreate} interactions
    *
    */
   async execute(interactions) {
-    const user = interactions.options.getUser('user');
-    const reason = interactions.options.getString('reason') || 'No reason provided.';
+    const user = interactions.options.getUser("user");
+    const reason =
+      interactions.options.getString("reason") || "No reason provided.";
     const member = interactions.guild.members.cache.get(user.id);
+
+    await interactions.deferReply();
+
     if (!member) {
-      return interactions.reply({ content: 'That user is not in this server.', ephemeral: true });
+      return interactions.followUp({
+        content: "That user is not in this server.",
+        ephemeral: true,
+      });
     }
     if (!member.kickable) {
-      return interactions.reply({ content: 'I cannot kick that user.', ephemeral: true });
+      return interactions.followUp({
+        content: "I cannot kick that user.",
+        ephemeral: true,
+      });
     }
     try {
-      await member.send(`You're been kicked from **crischutu07's Server** Reason: ${reason}`)
+      await member.send(
+        `You're been kicked from **crischutu07's Server** Reason: ${reason}`
+      );
       await member.kick(reason);
-      return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)` });
+      return interactions.followUp({
+        content: `Successfully kicked ${user.username} for reason: ${reason} (Recieved DMs)`,
+        ephemeral: true
+      });
     } catch (error) {
-      return interactions.reply({ content: `Successfully kicked ${user.username} for reason: ${reason}` })
+      return interactions.followUp({
+        cantent: `Successfully kicked ${user.username} for reason: ${reason}`,
+      });
     }
-  }
-}
+  },
+};

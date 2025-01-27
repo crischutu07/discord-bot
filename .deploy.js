@@ -25,7 +25,6 @@ for (const folder of commandFolders) {
     const command = require(filePath);
     if (command.disabled === true) {
       log.notice(`${command.data.name} is now disabled.`)
-      continue;
     }
     if ('data' in command) {
       if (command.data.dm_permissions) {

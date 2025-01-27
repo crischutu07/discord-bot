@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 
 module.exports = {
   disabled: false,
@@ -11,7 +11,7 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async execute(interaction) {
     const sent = await interaction.reply({

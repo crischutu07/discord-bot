@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 let a = new Map([
   ["Alice", "https://murder-drones.fandom.com/wiki/Alice"],
   ["Amda", "https://murder-drones.fandom.com/wiki/Amda"],
@@ -68,7 +68,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async autocomplete(interaction) {
     const focusedValue = interaction.options.getFocused();
@@ -79,7 +79,7 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    * @param {log} log
    * @param chalk
    */

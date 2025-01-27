@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+const { Events, EmbedBuilder } = require('discord.js')
 let infoIcon = 'https://i.imgur.com/tjevwUV.png';
 let userRound = 'https://i.imgur.com/Xpa0SWO.png';
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   /**
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    */
   async execute(interaction) {
     const user = interaction.options.getUser('user') || interaction.user;

@@ -3,9 +3,7 @@
   "clientId": "1228308322914930739",
   "bannerPath": "./contents/banner.gif",
   "avatarPath": "./contents/sillies.jpg",
-  "owner": [
-    "1001747794954039368"
-  ],
+  "ownerId": "1001747794954039368",
   "status": "idle",
   "presenceName": "OneShot"
 }

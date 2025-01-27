@@ -1,8 +1,8 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { Events } = require("discord.js");
 const translate = require("@iamtraction/google-translate");
 
 module.exports = {
-  disabled: false,
+  disabled: true,
   data: {
     name: "translate",
     description: "Translate a messages (NOT 100% CORRECT)",
@@ -21,7 +21,7 @@ module.exports = {
   },
   /**
    *
-   * @param {SlashCommandBuilder} interaction
+   * @param {Events.InteractionCreate} interaction
    * @param {log} log
    */
   async execute(interaction, log) {

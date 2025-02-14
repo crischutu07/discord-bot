@@ -94,16 +94,17 @@ module.exports = {
         name: cb[n1],
         url: a.get(cb[n1])
       }
-    } /* else {
-      if (!a.get(characters)){
-        await interaction.reply({ content: "Please enter a valid Murder Drones characters.\n-# Tip: Use names from **[this](<\https://murder-drones.fandom.com/wiki/Category:Characters>)** pages", ephemeral: true });
-        return
-      }
-      else c1 = {
+    } else {
+      if (!a.get(characters)) {
+        c1 = {
+          name: characters,
+          url: null
+        }
+      } else c1 = {
         name: characters,
         url: a.get(characters)
       }
-    } */
+    }
     let c2;
     do {
       n1 = randomInt(cb.length)
@@ -114,6 +115,9 @@ module.exports = {
     } while (c1.name === c2.name)
 
     log.debug(`${chalk.yellow(interaction.user.username)} Murder Drone ships: ${chalk.green(c1)} x ${chalk.green(c2)}`)
-    interaction.reply(`**[${c1.name}](<${c1.url}>)** ship with **[${c2.name}](<${c2.url}>)**`)
+    if (c1.url)
+      interaction.reply(`**[${c1.name}](<${c1.url}>)** ship with **[${c2.name}](<${c2.url}>)**`)
+    else
+      interaction.reply(`**${c1.name}** ship with **[${c2.name}](<${c2.url}>)**`)
   },
 };
